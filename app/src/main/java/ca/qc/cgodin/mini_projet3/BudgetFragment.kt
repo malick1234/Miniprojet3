@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
 import ca.qc.cgodin.mini_projet3.databinding.FragmentBudgetBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,6 +28,10 @@ class BudgetFragment : Fragment() {
 
     private lateinit var binding: FragmentBudgetBinding
 
+    private val succursaleViewModel: SuccursaleViewModel by lazy{
+        ViewModelProvider(this).get(SuccursaleViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,6 +46,25 @@ class BudgetFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentBudgetBinding.inflate(layoutInflater)
+
+        binding.btnRetour.setOnClickListener {
+            findNavController().navigate(BudgetFragmentDirections.actionBudgetFragmentToListFragment())
+        }
+
+        binding.btnAfficher.setOnClickListener {
+            val ville = binding.etVilleBudget.text.trim()
+            if (ville.length == 0){
+                Toast.makeText(requireContext(), "Veuillez inscire la ville !", Toast.LENGTH_LONG).show()
+            }
+            else{
+               succursaleViewModel.getBudget(ville.toString()).toString()
+            }
+
+            succursaleViewModel.budgetSuccursales.observe(viewLifecycleOwner) { budget ->
+                binding.tvViewBudget.text = "$budget $"
+            }
+        }
+
 
 
         return binding.root

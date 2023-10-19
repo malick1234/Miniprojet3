@@ -19,8 +19,6 @@ interface SuccursaleDao {
     @Query("SELECT * from table_succursale WHERE Ville=(:Ville)")
     fun getBudget(Ville: String): LiveData<Succursale?>
 
-    @Update
-    fun updateSuccursale(succursale: Succursale)
     @Delete
     fun deleteSuccursale(succursale: Succursale)
 }

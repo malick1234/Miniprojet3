@@ -5,10 +5,63 @@
     android:layout_height="match_parent"
     tools:context=".BudgetFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <TextView
+        android:id="@+id/tvTitre"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="#03A9F4"
+        android:gravity="center"
+        android:text="@string/txt_afficher_budget"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/tvVilleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/txt_ville"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etVilleBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnAfficher"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="170dp"
+        android:text="Afficher" />
+
+    <TextView
+        android:id="@+id/tvViewBudget"
+        android:layout_width="359dp"
+        android:layout_height="172dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="280dp"
+        android:background="#03A9F4"
+        android:gravity="center"
+        android:text="0$"
+        android:textColor="@color/black"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/btnRetour"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="480dp"
+        android:text="@string/txt_retour" />
 </FrameLayout>

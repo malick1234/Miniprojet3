@@ -11,12 +11,13 @@
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="659dp"
+        android:layout_marginTop="656dp"
         android:layout_marginEnd="70dp"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#03A9F4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toEndOf="@+id/rvListeSuccursales"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,15 +53,15 @@
         android:id="@+id/fabBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="659dp"
+        android:layout_marginTop="656dp"
         android:layout_marginEnd="200dp"
         android:clickable="true"
         android:src="@drawable/ic_budget_24"
         app:backgroundTint="#03A9F4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.679"
         app:layout_constraintStart_toEndOf="@+id/rvListeSuccursales"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

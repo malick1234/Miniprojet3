@@ -54,5 +54,9 @@
         android:id="@+id/budgetFragment"
         android:name="ca.qc.cgodin.mini_projet3.BudgetFragment"
         android:label="fragment_budget"
-        tools:layout="@layout/fragment_budget" />
+        tools:layout="@layout/fragment_budget" >
+        <action
+            android:id="@+id/action_budgetFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>

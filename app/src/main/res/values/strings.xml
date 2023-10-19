@@ -11,4 +11,6 @@
     <string name="txt_budget">Budget:</string>
     <string name="txt_liste">Liste des succursales</string>
     <string name="context_budget">Budget</string>
+    <string name="txt_afficher_budget">Afficher budget</string>
+    <string name="txt_retour">Retour</string>
 </resources>
