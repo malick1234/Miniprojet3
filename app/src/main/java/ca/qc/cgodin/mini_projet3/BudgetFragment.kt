@@ -1,6 +1,7 @@
 package ca.qc.cgodin.mini_projet3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,16 +58,11 @@ class BudgetFragment : Fragment() {
                 Toast.makeText(requireContext(), "Veuillez inscire la ville !", Toast.LENGTH_LONG).show()
             }
             else{
-               succursaleViewModel.getBudget(ville.toString()).toString()
+                binding.tvViewBudget.text = succursaleViewModel.getBudget(ville.toString()).toString()
+                Log.i("budget: ", succursaleViewModel.getBudget(ville.toString()).toString())
             }
 
-            succursaleViewModel.budgetSuccursales.observe(viewLifecycleOwner) { budget ->
-                binding.tvViewBudget.text = "$budget $"
-            }
         }
-
-
-
         return binding.root
     }
 

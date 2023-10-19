@@ -76,4 +76,12 @@
         android:layout_marginTop="100dp"
         android:text="Ajouter" />
 
+    <Button
+        android:id="@+id/btnRetour"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="520dp"
+        android:text="@string/txt_retour" />
+
 </FrameLayout>

@@ -15,8 +15,7 @@ class SuccursaleListAdapter constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var succursales = emptyList<Succursale>() // Cached copy of students
 
-    inner class SuccursaleViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    inner class SuccursaleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val villeItemView: TextView = itemView.findViewById(R.id.tvVille)
         val budgetItemView: TextView = itemView.findViewById(R.id.tvBudget)
     }

@@ -50,6 +50,10 @@ class AddFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddBinding.inflate(layoutInflater)
 
+        binding.btnRetour.setOnClickListener {
+            findNavController().navigate(AddFragmentDirections.actionAddFragmentToListFragment())
+        }
+
         binding.btnAjouterSucc.setOnClickListener {
 
             if (binding.etVille.text.trim().length == 0){
@@ -65,9 +69,7 @@ class AddFragment : Fragment() {
             else{
                 val ville = binding.etVille.text.trim().toString()
                 val budget = binding.etBudget.text.trim().toString().toInt()
-                val succursale = Succursale(
-                    ville,
-                    budget)
+                val succursale = Succursale(ville,budget)
                 succursaleViewModel.insert(succursale)
                 findNavController().navigate(AddFragmentDirections.actionAddFragmentToListFragment())
 
