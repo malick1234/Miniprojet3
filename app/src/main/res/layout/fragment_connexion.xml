@@ -69,9 +69,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="306dp"
-        android:layout_height="117dp"
+        android:layout_width="390dp"
+        android:layout_height="132dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="90dp"
+        app:srcCompat="@drawable/home"
         tools:src="@drawable/home" />
 </FrameLayout>
