@@ -6,4 +6,8 @@
     <string name="txtIdentifiant">Identifiant:</string>
     <string name="txtMotDePasse">Password:</string>
     <string name="btnConnexion">Connexion</string>
+    <string name="txt_add">Ajouter succursale</string>
+    <string name="txt_ville">Ville:</string>
+    <string name="txt_budget">Budget:</string>
+    <string name="txt_liste">Liste des succursales</string>
 </resources>

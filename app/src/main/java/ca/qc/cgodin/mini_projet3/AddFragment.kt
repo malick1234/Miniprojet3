@@ -5,6 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import ca.qc.cgodin.mini_projet3.data.Succursale
+import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
+import ca.qc.cgodin.mini_projet3.databinding.FragmentAddBinding
+import ca.qc.cgodin.roomstudent.SuccursaleListAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +29,12 @@ class AddFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentAddBinding
+
+    private val succursaleViewModel: SuccursaleViewModel by lazy{
+        ViewModelProvider(this).get(SuccursaleViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +48,34 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false)
+        binding = FragmentAddBinding.inflate(layoutInflater)
+
+        binding.btnAjouterSucc.setOnClickListener {
+
+            if (binding.etVille.text.trim().length == 0){
+                Toast.makeText(requireContext(), "Veuillez écrire le nom de la ville !", Toast.LENGTH_LONG).show()
+            }
+            else if(binding.etBudget.text.trim().length == 0){
+                Toast.makeText(requireContext(), "Veuillez écrire le budget !", Toast.LENGTH_LONG).show()
+            }
+            else if(binding.etVille.text.trim().length == 0 &&
+                binding.etBudget.text.trim().length == 0){
+                Toast.makeText(requireContext(), "Veuillez inscrire les informations du succursale !", Toast.LENGTH_LONG).show()
+            }
+            else{
+                val ville = binding.etVille.text.trim().toString()
+                val budget = binding.etBudget.text.trim().toString().toInt()
+                val succursale = Succursale(
+                    ville,
+                    budget)
+                succursaleViewModel.insert(succursale)
+                findNavController().navigate(AddFragmentDirections.actionAddFragmentToListFragment())
+
+            }
+
+        }
+
+        return binding.root
     }
 
     companion object {
