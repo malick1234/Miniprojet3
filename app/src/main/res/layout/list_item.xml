@@ -35,11 +35,21 @@
             android:id="@+id/fabDeleteSucc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="50dp"
             android:layout_weight="1"
             android:clickable="true"
             android:src="@android:drawable/ic_menu_delete"
             app:backgroundTint="@color/white"
+            app:fabCustomSize="45sp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@android:drawable/btn_star"
+            app:backgroundTint="#FFFFFF"
             app:fabCustomSize="45sp" />
 
     </LinearLayout>

@@ -39,6 +39,10 @@ class ListFragment : Fragment() {
             findNavController().navigate(ListFragmentDirections.actionListFragmentToAddFragment())
         }
 
+        binding.fabBudget.setOnClickListener {
+            findNavController().navigate(ListFragmentDirections.actionListFragmentToBudgetFragment())
+        }
+
         val adapter = SuccursaleListAdapter(requireContext())
         binding.rvListeSuccursales.adapter = adapter
 
