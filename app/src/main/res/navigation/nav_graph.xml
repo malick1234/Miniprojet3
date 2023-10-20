@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_listFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_budgetFragment"
+            app:destination="@id/budgetFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -45,6 +48,15 @@
         tools:layout="@layout/fragment_update" >
         <action
             android:id="@+id/action_updateFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="ca.qc.cgodin.mini_projet3.BudgetFragment"
+        android:label="fragment_budget"
+        tools:layout="@layout/fragment_budget" >
+        <action
+            android:id="@+id/action_budgetFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
 </navigation>

@@ -1,6 +1,7 @@
 package ca.qc.cgodin.mini_projet3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import ca.qc.cgodin.mini_projet3.data.Succursale
 import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
-import ca.qc.cgodin.mini_projet3.databinding.FragmentAddBinding
-import ca.qc.cgodin.roomstudent.SuccursaleListAdapter
+import ca.qc.cgodin.mini_projet3.databinding.FragmentBudgetBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,15 +19,15 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddFragment.newInstance] factory method to
+ * Use the [BudgetFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddFragment : Fragment() {
+class BudgetFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentAddBinding
+    private lateinit var binding: FragmentBudgetBinding
 
     private val succursaleViewModel: SuccursaleViewModel by lazy{
         ViewModelProvider(this).get(SuccursaleViewModel::class.java)
@@ -48,35 +46,23 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAddBinding.inflate(layoutInflater)
+        binding = FragmentBudgetBinding.inflate(layoutInflater)
 
         binding.btnRetour.setOnClickListener {
-            findNavController().navigate(AddFragmentDirections.actionAddFragmentToListFragment())
+            findNavController().navigate(BudgetFragmentDirections.actionBudgetFragmentToListFragment())
         }
 
-        binding.btnAjouterSucc.setOnClickListener {
-
-            if (binding.etVille.text.trim().length == 0){
-                Toast.makeText(requireContext(), "Veuillez écrire le nom de la ville !", Toast.LENGTH_LONG).show()
-            }
-            else if(binding.etBudget.text.trim().length == 0){
-                Toast.makeText(requireContext(), "Veuillez écrire le budget !", Toast.LENGTH_LONG).show()
-            }
-            else if(binding.etVille.text.trim().length == 0 &&
-                binding.etBudget.text.trim().length == 0){
-                Toast.makeText(requireContext(), "Veuillez inscrire les informations du succursale !", Toast.LENGTH_LONG).show()
+        binding.btnAfficher.setOnClickListener {
+            val ville = binding.etVilleBudget.text.trim()
+            if (ville.length == 0){
+                Toast.makeText(requireContext(), "Veuillez inscire la ville !", Toast.LENGTH_LONG).show()
             }
             else{
-                val ville = binding.etVille.text.trim().toString()
-                val budget = binding.etBudget.text.trim().toString().toInt()
-                val succursale = Succursale(ville,budget)
-                succursaleViewModel.insert(succursale)
-                findNavController().navigate(AddFragmentDirections.actionAddFragmentToListFragment())
-
+                binding.tvViewBudget.text = succursaleViewModel.getBudget(ville.toString()).toString()
+                Log.i("budget: ", succursaleViewModel.getBudget(ville.toString()).toString())
             }
 
         }
-
         return binding.root
     }
 
@@ -87,12 +73,12 @@ class AddFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AddFragment.
+         * @return A new instance of fragment BudgetFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AddFragment().apply {
+            BudgetFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
