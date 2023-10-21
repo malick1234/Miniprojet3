@@ -10,31 +10,32 @@ import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.mini_projet3.models.Student
 import com.bumptech.glide.Glide
 
-class SuccursaleAdapter : RecyclerView.Adapter<SuccursaleAdapter.SuccursaleViewHolder>() {
+class SuccursaleAdapter() : RecyclerView.Adapter<SuccursaleAdapter.SuccursaleViewHolder>() {
     private var student: List<Student> = emptyList()
+    private lateinit var onItemClickListener: ((Student) -> Unit)
 
     inner class SuccursaleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //val ivCoverImage: ImageView = itemView.findViewById(R.id.ivCoverImage)
         //val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
 
         override fun toString(): String {
-            //return super.toString() + " '" + tvTitle.text + "'"
+            return super.toString() + " '"  + "'"
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             SuccursaleViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.news_item, parent, false)
+            .inflate(R.layout.succursale_item, parent, false)
         return SuccursaleViewHolder(view)
     }
 
-    override fun getItemCount(): Int = articles.size
+    override fun getItemCount(): Int = student.size
 
 
-    override fun onBindViewHolder(holderArticle: ArticleViewHolder, position: Int)
+    override fun onBindViewHolder(holderArticle: SuccursaleViewHolder, position: Int)
     {
-        val article = articles[position]
+        /*val article = student[position]
         holderArticle.tvTitle.text = article.title
         holderArticle.itemView.apply {
 
@@ -43,11 +44,12 @@ class SuccursaleAdapter : RecyclerView.Adapter<SuccursaleAdapter.SuccursaleViewH
         }
         holderArticle.itemView.setOnClickListener {
             onItemClickListener(article)
-        }
-        Log.i("", "Je suis l'article $article")
+        }*/
+        //Log.i("", "Je suis l'article $article")
     }
-    fun setArticles(articles: List<Article>) {
-        this.articles = articles
+    fun setStudent(articles: List<Student>) {
+        this.student = student
+        Log.i("", "Je suis l'article $student")
         notifyDataSetChanged()
     }
 
