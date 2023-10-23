@@ -47,18 +47,18 @@ class ListFragment : Fragment(), AdapterCallback {
         adapter.adapterCallback = this
         binding.rvListeSuccursales.adapter = adapter
 
+
         succursaleViewModel.allSuccursales.observe(viewLifecycleOwner, Observer { succursales ->
             // Update the cached copy of the students in the adapter.
             succursales?.let { adapter.setSuccursales(it) }
         })
 
-
         return binding.root
     }
 
+
     //recoit le message du adapter
-    override fun sendInfos(message: String, ville: String, budget: String) {
-       Log.i("ce qui est recu: ", "$message, $ville, $budget")
+    override fun sendID(message: String) {
         Log.i("jsp", succursaleViewModel.allSuccursales.value?.get(message.toInt()).toString())
 
         var succADelete = succursaleViewModel.allSuccursales.value?.get(message.toInt())
@@ -66,13 +66,6 @@ class ListFragment : Fragment(), AdapterCallback {
             succursaleViewModel.delete(succADelete)
         }
 
-        val destinationFragment = UpdateFragment.newInstance(message, ville, budget)
-        val sourceFragment = ListFragment()
-
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        sourceFragment.view?.let { transaction.replace(it.id, destinationFragment) }
-        transaction.addToBackStack(null)
-        transaction.commit()
 
     }
 

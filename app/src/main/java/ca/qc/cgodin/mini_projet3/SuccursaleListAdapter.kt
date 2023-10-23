@@ -50,12 +50,11 @@ class SuccursaleListAdapter constructor(
         holder.budgetItemView.text = "${current.Budget}"
 
         holder.btnDelete.setOnClickListener {
-            adapterCallback?.sendInfos(position.toString(), "${current.Ville}", "${current.Budget}")
+            adapterCallback?.sendID(position.toString())
         }
 
         holder.btnUpdate.setOnClickListener {
             holder.itemView.findNavController().navigate(ListFragmentDirections.actionListFragmentToUpdateFragment())
-            adapterCallback?.sendInfos(position.toString(), "${current.Ville}", "${current.Budget}")
         }
 
     }
