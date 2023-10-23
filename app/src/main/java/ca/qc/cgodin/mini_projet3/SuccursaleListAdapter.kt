@@ -1,13 +1,27 @@
 package ca.qc.cgodin.roomstudent
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import ca.qc.cgodin.mini_projet3.ListFragment
+import ca.qc.cgodin.mini_projet3.ListFragmentDirections
+import ca.qc.cgodin.mini_projet3.MainActivity
 import ca.qc.cgodin.mini_projet3.R
 import ca.qc.cgodin.mini_projet3.data.Succursale
+import ca.qc.cgodin.mini_projet3.data.SuccursaleDao
+import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SuccursaleListAdapter constructor(
     context: Context
@@ -15,9 +29,14 @@ class SuccursaleListAdapter constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var succursales = emptyList<Succursale>() // Cached copy of students
 
+    var adapterCallback: AdapterCallback? = null
+    var adapterCallbackInfos: AdapterCallbackInfos? = null
+
     inner class SuccursaleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val villeItemView: TextView = itemView.findViewById(R.id.tvVille)
         val budgetItemView: TextView = itemView.findViewById(R.id.tvBudget)
+        val btnDelete: FloatingActionButton = itemView.findViewById(R.id.fabDeleteSucc)
+        val btnUpdate: FloatingActionButton = itemView.findViewById(R.id.fabUpdate)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuccursaleViewHolder {
@@ -29,7 +48,18 @@ class SuccursaleListAdapter constructor(
         val current = succursales[position]
         holder.villeItemView.text = "${current.Ville}"
         holder.budgetItemView.text = "${current.Budget}"
+
+        holder.btnDelete.setOnClickListener {
+            adapterCallback?.sendInfos(position.toString(), "${current.Ville}", "${current.Budget}")
+        }
+
+        holder.btnUpdate.setOnClickListener {
+            holder.itemView.findNavController().navigate(ListFragmentDirections.actionListFragmentToUpdateFragment())
+            adapterCallback?.sendInfos(position.toString(), "${current.Ville}", "${current.Budget}")
+        }
+
     }
+
 
     fun setSuccursales(succursales: List<Succursale>) {
         this.succursales = succursales
@@ -38,3 +68,5 @@ class SuccursaleListAdapter constructor(
 
     override fun getItemCount() = succursales.size
 }
+
+

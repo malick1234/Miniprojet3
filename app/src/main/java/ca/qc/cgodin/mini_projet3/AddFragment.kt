@@ -54,6 +54,7 @@ class AddFragment : Fragment() {
             findNavController().navigate(AddFragmentDirections.actionAddFragmentToListFragment())
         }
 
+
         binding.btnAjouterSucc.setOnClickListener {
 
             if (binding.etVille.text.trim().length == 0){

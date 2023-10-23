@@ -29,7 +29,7 @@ class BudgetFragment : Fragment() {
 
     private lateinit var binding: FragmentBudgetBinding
 
-    private val succursaleViewModel: SuccursaleViewModel by lazy{
+    private val succursaleViewModel: SuccursaleViewModel by lazy {
         ViewModelProvider(this).get(SuccursaleViewModel::class.java)
     }
 
@@ -51,19 +51,28 @@ class BudgetFragment : Fragment() {
         binding.btnRetour.setOnClickListener {
             findNavController().navigate(BudgetFragmentDirections.actionBudgetFragmentToListFragment())
         }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val viewModel = ViewModelProvider(this).get(succursaleViewModel::class.java)
+
 
         binding.btnAfficher.setOnClickListener {
-            val ville = binding.etVilleBudget.text.trim()
-            if (ville.length == 0){
-                Toast.makeText(requireContext(), "Veuillez inscire la ville !", Toast.LENGTH_LONG).show()
-            }
-            else{
-                binding.tvViewBudget.text = succursaleViewModel.getBudget(ville.toString()).toString()
-                Log.i("budget: ", succursaleViewModel.getBudget(ville.toString()).toString())
-            }
 
+            viewModel.budgetLiveData.observe(viewLifecycleOwner, { budget ->
+                binding.tvViewBudget.text = "$budget$"
+            })
+
+            var ville = binding.etVilleBudget.text.toString()
+            if (ville.length == 0) {
+                Toast.makeText(requireContext(), "Veuillez inscire la ville !", Toast.LENGTH_LONG)
+                    .show()
+            }
+            viewModel.getBudget(ville)
         }
-        return binding.root
+
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package ca.qc.cgodin.mini_projet3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +9,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
 import ca.qc.cgodin.mini_projet3.databinding.FragmentListBinding
+import ca.qc.cgodin.roomstudent.AdapterCallback
 import ca.qc.cgodin.roomstudent.SuccursaleListAdapter
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), AdapterCallback {
     //private val args: ListFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentListBinding
@@ -44,6 +44,7 @@ class ListFragment : Fragment() {
         }
 
         val adapter = SuccursaleListAdapter(requireContext())
+        adapter.adapterCallback = this
         binding.rvListeSuccursales.adapter = adapter
 
         succursaleViewModel.allSuccursales.observe(viewLifecycleOwner, Observer { succursales ->
@@ -51,7 +52,30 @@ class ListFragment : Fragment() {
             succursales?.let { adapter.setSuccursales(it) }
         })
 
+
         return binding.root
     }
+
+    //recoit le message du adapter
+    override fun sendInfos(message: String, ville: String, budget: String) {
+       Log.i("ce qui est recu: ", "$message, $ville, $budget")
+        Log.i("jsp", succursaleViewModel.allSuccursales.value?.get(message.toInt()).toString())
+
+        var succADelete = succursaleViewModel.allSuccursales.value?.get(message.toInt())
+        if (succADelete != null) {
+            succursaleViewModel.delete(succADelete)
+        }
+
+        val destinationFragment = UpdateFragment.newInstance(message, ville, budget)
+        val sourceFragment = ListFragment()
+
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        sourceFragment.view?.let { transaction.replace(it.id, destinationFragment) }
+        transaction.addToBackStack(null)
+        transaction.commit()
+
+    }
+
+
 
 }

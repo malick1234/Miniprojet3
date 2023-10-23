@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,16 +15,6 @@
         android:text="@string/txt_update"
         android:textColor="@color/black"
         android:textSize="32sp"/>
-
-    <TextView
-        android:id="@+id/tvId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="120dp"
-        android:text="ID:"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvVilleMod"
@@ -43,16 +34,6 @@
         android:layout_marginTop="280dp"
         android:text="Budget:"
         android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/etID"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="110dp"
-        android:ems="10"
-        android:inputType="text"
         android:textSize="20sp" />
 
     <EditText
@@ -81,7 +62,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="360dp"
-        android:text="Update" />
+        android:text="Modifier" />
+
+    <ImageView
+        android:id="@+id/imgUpdate"
+        android:layout_width="198dp"
+        android:layout_height="82dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_update_24" />
 
 </FrameLayout>
 

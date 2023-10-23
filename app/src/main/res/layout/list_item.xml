@@ -52,5 +52,15 @@
             app:backgroundTint="#FFFFFF"
             app:fabCustomSize="45sp" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_update_24"
+            app:backgroundTint="#FFFFFF"
+            app:fabCustomSize="45sp"/>
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

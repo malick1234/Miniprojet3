@@ -3,6 +3,7 @@ package ca.qc.cgodin.mini_projet3.data
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import ca.qc.cgodin.mini_projet3.repository.SuccursaleRepository
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,10 @@ class SuccursaleViewModel(application: Application) : AndroidViewModel(applicati
     private val repository: SuccursaleRepository
 
     val allSuccursales: LiveData<List<Succursale>>
+
+    private val _budgetLiveData = MutableLiveData<Int>()
+    val budgetLiveData: LiveData<Int>
+        get() = _budgetLiveData
 
     init {
         val succursaleDao = SuccursaleDatabase.getDatabase(application).succursaleDao()
@@ -23,6 +28,11 @@ class SuccursaleViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun getBudget(ville: String) = viewModelScope.launch(Dispatchers.IO) {
-          repository.getBudget(ville)
+        val budget = repository.getBudget(ville)
+        _budgetLiveData.postValue(budget)
+    }
+
+    fun delete(succursale: Succursale) = viewModelScope.launch(Dispatchers.IO){
+        repository.delete(succursale)
     }
 }
