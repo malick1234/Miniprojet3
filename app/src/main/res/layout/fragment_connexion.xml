@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="55dp"
         android:ems="10"
-        android:gravity="center"
+        android:gravity="center|left"
         android:inputType="textPassword" />
 
     <EditText

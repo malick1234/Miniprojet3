@@ -5,11 +5,11 @@ import java.io.Serializable
 
 data class Student(
     @SerializedName("Matricule")
-    val Matricule: String,
+    val matricule: Int,
     @SerializedName("Nom")
-    val Nom: String,
+    val nom: String,
     @SerializedName("Prenom")
-    val Prenom: String,
+    val prenom: String,
     @SerializedName("token")
     val token: String
-) : Serializable
+): Serializable

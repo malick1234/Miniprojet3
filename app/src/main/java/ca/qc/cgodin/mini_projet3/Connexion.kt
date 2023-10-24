@@ -1,3 +1,10 @@
 package ca.qc.cgodin.mini_projet3
 
-data class Connexion(val mat: String, val mdp: String)
+import com.google.gson.annotations.SerializedName
+
+data class Connexion(
+    @SerializedName("Mat")
+    val mat: String,
+    @SerializedName("MDP")
+    val mdp: String
+)

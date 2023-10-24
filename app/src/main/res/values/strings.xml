@@ -6,4 +6,9 @@
     <string name="txtIdentifiant">Identifiant:</string>
     <string name="txtMotDePasse">Password:</string>
     <string name="btnConnexion">Connexion</string>
+    <string name="strWelcome">Welcome</string>
+    <string name="txtDeconnexion">Deconnexion</string>
+    <string name="txtListe">Lister Succursale</string>
+    <string name="suppression">Supprimer</string>
+    <string name="txtModifier">Modifier</string>
 </resources>
