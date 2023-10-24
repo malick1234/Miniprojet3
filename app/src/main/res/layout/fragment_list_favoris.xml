@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListFragmentFavoris">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListeFavoris"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="67dp" />
+
+    <TextView
+        android:id="@+id/tvFavoris"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="#03A9F4"
+        android:gravity="center"
+        android:text="@string/txt_liste_favoris"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="600dp"
+        android:clickable="true"
+        android:src="@drawable/ic_arrow_back"
+        app:backgroundTint="#03A9F4" />
+</FrameLayout>

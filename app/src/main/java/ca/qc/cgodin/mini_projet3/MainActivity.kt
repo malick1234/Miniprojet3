@@ -1,19 +1,14 @@
 package ca.qc.cgodin.mini_projet3
 
-import androidx.appcompat.app.AppCompatActivity
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
-import ca.qc.cgodin.mini_projet3.databinding.ActivityMainBinding
-import ca.qc.cgodin.mini_projet3.repository.SuccursaleRepository
+import androidx.appcompat.app.AppCompatActivity
+import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
+
 
 class MainActivity : AppCompatActivity() {
-    private val navController by lazy {     val navHostFragment =
-        supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navHostFragment.navController }
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var succursaleViewModel : SuccursaleViewModel
+    private lateinit var viewModel: SuccursaleViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

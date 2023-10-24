@@ -22,6 +22,20 @@
         <action
             android:id="@+id/action_listFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+            android:id="@+id/action_listFragment_to_connexionFragment2"
+            app:destination="@id/connexionFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_budgetFragment"
+            app:destination="@id/budgetFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_listFragmentFavoris"
+            app:destination="@id/listFragmentFavoris" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -58,5 +72,23 @@
         <action
             android:id="@+id/action_menuFragment_to_addFragment"
             app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="ca.qc.cgodin.mini_projet3.BudgetFragment"
+        android:label="fragment_budget"
+        tools:layout="@layout/fragment_budget" >
+        <action
+            android:id="@+id/action_budgetFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragmentFavoris"
+        android:name="ca.qc.cgodin.mini_projet3.ListFragmentFavoris"
+        android:label="fragment_list_favoris"
+        tools:layout="@layout/fragment_list_favoris" >
+        <action
+            android:id="@+id/action_listFragmentFavoris_to_listFragment"
+            app:destination="@id/listFragment" />
     </fragment>
 </navigation>

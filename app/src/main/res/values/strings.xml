@@ -11,4 +11,13 @@
     <string name="txtListe">Lister Succursale</string>
     <string name="suppression">Supprimer</string>
     <string name="txtModifier">Modifier</string>
+    <string name="txt_add">Ajouter succursale</string>
+    <string name="txt_ville">Ville:</string>
+    <string name="txt_budget">Budget:</string>
+    <string name="txt_liste">Liste des succursales</string>
+    <string name="context_budget">Budget</string>
+    <string name="txt_afficher_budget">Afficher budget</string>
+    <string name="txt_retour">Retour</string>
+    <string name="txt_update">Modifier succursale</string>
+    <string name="txt_liste_favoris">Liste des favoris</string>
 </resources>
