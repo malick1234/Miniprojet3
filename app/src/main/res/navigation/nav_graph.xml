@@ -11,8 +11,8 @@
         android:label="fragment_connexion"
         tools:layout="@layout/fragment_connexion" >
         <action
-            android:id="@+id/action_connexionFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            android:id="@+id/action_connexionFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
@@ -34,6 +34,8 @@
         <action
             android:id="@+id/action_listFragment_to_listFragmentFavoris"
             app:destination="@id/listFragmentFavoris" />
+            android:id="@+id/action_listFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -41,8 +43,8 @@
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" >
         <action
-            android:id="@+id/action_addFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            android:id="@+id/action_addFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
@@ -50,8 +52,26 @@
         android:label="fragment_update"
         tools:layout="@layout/fragment_update" >
         <action
-            android:id="@+id/action_updateFragment_to_listFragment"
+            android:id="@+id/action_updateFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="ca.qc.cgodin.mini_projet3.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_connexionFragment"
+            app:destination="@id/connexionFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
     <fragment
         android:id="@+id/budgetFragment"
