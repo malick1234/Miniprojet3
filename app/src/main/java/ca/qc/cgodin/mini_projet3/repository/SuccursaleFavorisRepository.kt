@@ -18,5 +18,8 @@ class SuccursaleFavorisRepository(private val succursaleDaoFavoris: SuccursaleDa
         succursaleDaoFavoris.deleteSuccursaleFavoris(succursaleFavoris)
     }
 
+    suspend fun deleteAll(){
+        succursaleDaoFavoris.deleteAll()
+    }
 
 }

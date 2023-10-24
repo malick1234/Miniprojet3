@@ -1,15 +1,22 @@
 package ca.qc.cgodin.mini_projet3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import ca.qc.cgodin.mini_projet3.data.Succursale
+import ca.qc.cgodin.mini_projet3.data.SuccursaleFavoris
 import ca.qc.cgodin.mini_projet3.data.SuccursaleFavorisViewModel
 import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
 import ca.qc.cgodin.mini_projet3.databinding.FragmentListFavorisBinding
+import ca.qc.cgodin.roomstudent.AdapterCallback
+import ca.qc.cgodin.roomstudent.SuccursaleListAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ListFragmentFavoris.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListFragmentFavoris : Fragment() {
+class ListFragmentFavoris : Fragment(), AdapterCallback {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -54,6 +61,21 @@ class ListFragmentFavoris : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = SuccursaleListeFavorisAdapter(requireContext())
+        binding.rvListeFavoris.adapter = adapter
+
+
+        succursaleViewModelFavoris.allSuccursalesFavoris.observe(viewLifecycleOwner, Observer { succursales ->
+            // Update the cached copy of the students in the adapter.
+            succursales?.let { adapter.setSuccursales(it) }
+        })
+
+        //succursaleViewModelFavoris.deleteAll()
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -73,5 +95,15 @@ class ListFragmentFavoris : Fragment() {
                 }
             }
     }
+
+    override fun sendSucc(succ: Succursale, code: String) {
+    }
+
+    override fun sendSuccFav(succ: SuccursaleFavoris, code: String) {
+        if (code=="DELETE"){
+            succursaleViewModelFavoris.delete(succ)
+        }
+    }
+
 
 }

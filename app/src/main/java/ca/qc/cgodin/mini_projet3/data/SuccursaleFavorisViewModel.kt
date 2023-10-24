@@ -28,4 +28,8 @@ class SuccursaleFavorisViewModel(application: Application) : AndroidViewModel(ap
     fun delete(succursaleFavoris: SuccursaleFavoris) = viewModelScope.launch(Dispatchers.IO){
         repository.delete(succursaleFavoris)
     }
+
+    fun deleteAll() = viewModelScope.launch(Dispatchers.IO){
+        repository.deleteAll()
+    }
 }

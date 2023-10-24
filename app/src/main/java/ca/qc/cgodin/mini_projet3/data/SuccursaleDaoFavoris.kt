@@ -20,4 +20,6 @@ interface SuccursaleDaoFavoris {
     @Delete
     fun deleteSuccursaleFavoris(succursalesFavoris: SuccursaleFavoris)
 
+    @Query("DELETE FROM table_succursale_favoris")
+    fun deleteAll()
 }

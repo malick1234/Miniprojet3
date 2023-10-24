@@ -1,4 +1,8 @@
-package ca.qc.cgodin.roomstudent
+package ca.qc.cgodin.mini_projet3
+
+import ca.qc.cgodin.mini_projet3.data.SuccursaleFavoris
+import ca.qc.cgodin.roomstudent.AdapterCallback
+import ca.qc.cgodin.roomstudent.AdapterCallbackInfos
 
 import android.content.Context
 import android.content.Intent
@@ -23,25 +27,23 @@ import ca.qc.cgodin.mini_projet3.data.SuccursaleDao
 import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class SuccursaleListAdapter constructor(
+class SuccursaleListeFavorisAdapter constructor(
     context: Context
-) : RecyclerView.Adapter<SuccursaleListAdapter.SuccursaleViewHolder>() {
+) : RecyclerView.Adapter<SuccursaleListeFavorisAdapter.SuccursaleViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var succursales = emptyList<Succursale>() // Cached copy of students
+    private var succursales = emptyList<SuccursaleFavoris>() // Cached copy of students
 
     var adapterCallback: AdapterCallback? = null
-    var adapterCallbackInfos: AdapterCallbackInfos? = null
 
     inner class SuccursaleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val villeItemView: TextView = itemView.findViewById(R.id.tvVille)
         val budgetItemView: TextView = itemView.findViewById(R.id.tvBudget)
         val btnDelete: FloatingActionButton = itemView.findViewById(R.id.fabDeleteSucc)
         val btnUpdate: FloatingActionButton = itemView.findViewById(R.id.fabUpdate)
-        val btnFavoris: FloatingActionButton = itemView.findViewById(R.id.fabSave)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuccursaleViewHolder {
-        val itemView = inflater.inflate(R.layout.list_item, parent, false)
+        val itemView = inflater.inflate(R.layout.list_item_favoris, parent, false)
         return SuccursaleViewHolder(itemView)
     }
 
@@ -51,22 +53,17 @@ class SuccursaleListAdapter constructor(
         holder.budgetItemView.text = "${current.Budget}"
 
         holder.btnDelete.setOnClickListener {
-            adapterCallback?.sendSucc(current, "DELETE")
+
+            adapterCallback?.sendSuccFav(current, "DELETE")
         }
 
         holder.btnUpdate.setOnClickListener {
-            holder.itemView.findNavController().navigate(ListFragmentDirections.actionListFragmentToUpdateFragment())
-        }
-
-        holder.btnFavoris.setOnClickListener {
-            holder.itemView.findNavController().navigate(ListFragmentDirections.actionListFragmentToListFragmentFavoris())
-            adapterCallback?.sendSucc(current, "FAV")
+            holder.itemView.findNavController().navigate(ListFragmentFavorisDirections.actionListFragmentFavorisToListFragment())
         }
 
     }
 
-
-    fun setSuccursales(succursales: List<Succursale>) {
+    fun setSuccursales(succursales: List<SuccursaleFavoris>) {
         this.succursales = succursales
         notifyDataSetChanged()
     }

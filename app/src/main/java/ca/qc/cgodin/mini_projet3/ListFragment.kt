@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import ca.qc.cgodin.mini_projet3.data.Succursale
+import ca.qc.cgodin.mini_projet3.data.SuccursaleFavoris
+import ca.qc.cgodin.mini_projet3.data.SuccursaleFavorisViewModel
 import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
 import ca.qc.cgodin.mini_projet3.databinding.FragmentListBinding
 import ca.qc.cgodin.mini_projet3.repository.SuccursaleRepository
@@ -23,6 +26,10 @@ class ListFragment : Fragment(), AdapterCallback {
 
     private val succursaleViewModel: SuccursaleViewModel by lazy{
         ViewModelProvider(this).get(SuccursaleViewModel::class.java)
+    }
+
+    private val succursaleViewModelFavoris: SuccursaleFavorisViewModel by lazy{
+        ViewModelProvider(this).get(SuccursaleFavorisViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +58,10 @@ class ListFragment : Fragment(), AdapterCallback {
             findNavController().navigate(ListFragmentDirections.actionListFragmentToBudgetFragment())
         }
 
+        binding.fabFav.setOnClickListener {
+            findNavController().navigate(ListFragmentDirections.actionListFragmentToListFragmentFavoris())
+        }
+
 
         val adapter = SuccursaleListAdapter(requireContext())
         adapter.adapterCallback = this
@@ -65,17 +76,20 @@ class ListFragment : Fragment(), AdapterCallback {
 
 
     //recoit le message du adapter
-    override fun sendID(message: String) {
-        Log.i("jsp", succursaleViewModel.allSuccursales.value?.get(message.toInt()).toString())
-
-        var succADelete = succursaleViewModel.allSuccursales.value?.get(message.toInt())
-        if (succADelete != null) {
-            succursaleViewModel.delete(succADelete)
+    override fun sendSucc(succursale: Succursale, code: String) {
+        Log.i("code:",code)
+        if(code=="DELETE"){
+            succursaleViewModel.delete(succursale)
         }
-
+        else if(code == "FAV"){
+            val succFav = SuccursaleFavoris(0, succursale.Ville, succursale.Budget)
+            succursaleViewModelFavoris.insert(succFav)
+        }
 
     }
 
+    override fun sendSuccFav(succ: SuccursaleFavoris, code: String) {
+    }
 
 
 }
