@@ -11,14 +11,17 @@ import androidx.room.Update
 @Dao
 interface SuccursaleDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(succursale: Succursale)
+    fun insert(succursaleFavori: Succursale)
     @Query("SELECT * from table_succursale")
     fun getSuccursales(): LiveData<List<Succursale>>
 
     //@Query("SELECT * from table_student")
-    @Query("SELECT Budget from table_succursale WHERE Ville=:ville")
-    fun getBudget(ville: String): Int
+    @Query("SELECT Budget from table_succursale WHERE Ville=(:ville)")
+    fun getBudget(ville: String): Long
 
     @Delete
     fun deleteSuccursale(succursale: Succursale)
+
+    @Query("DELETE FROM table_succursale")
+    fun deleteAll()
 }

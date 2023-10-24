@@ -37,6 +37,7 @@ class SuccursaleListAdapter constructor(
         val budgetItemView: TextView = itemView.findViewById(R.id.tvBudget)
         val btnDelete: FloatingActionButton = itemView.findViewById(R.id.fabDeleteSucc)
         val btnUpdate: FloatingActionButton = itemView.findViewById(R.id.fabUpdate)
+        val btnFavoris: FloatingActionButton = itemView.findViewById(R.id.fabSave)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuccursaleViewHolder {
@@ -55,6 +56,10 @@ class SuccursaleListAdapter constructor(
 
         holder.btnUpdate.setOnClickListener {
             holder.itemView.findNavController().navigate(ListFragmentDirections.actionListFragmentToUpdateFragment())
+        }
+
+        holder.btnFavoris.setOnClickListener {
+            holder.itemView.findNavController().navigate(ListFragmentDirections.actionListFragmentToListFragmentFavoris())
         }
 
     }

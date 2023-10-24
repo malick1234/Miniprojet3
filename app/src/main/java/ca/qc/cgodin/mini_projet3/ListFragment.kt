@@ -1,5 +1,6 @@
 package ca.qc.cgodin.mini_projet3
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ca.qc.cgodin.mini_projet3.data.SuccursaleViewModel
 import ca.qc.cgodin.mini_projet3.databinding.FragmentListBinding
+import ca.qc.cgodin.mini_projet3.repository.SuccursaleRepository
 import ca.qc.cgodin.roomstudent.AdapterCallback
 import ca.qc.cgodin.roomstudent.SuccursaleListAdapter
 
@@ -25,7 +27,6 @@ class ListFragment : Fragment(), AdapterCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -35,6 +36,13 @@ class ListFragment : Fragment(), AdapterCallback {
         // Inflate the layout for this fragment
         binding = FragmentListBinding.inflate(layoutInflater)
 
+
+        return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.fabAdd.setOnClickListener {
             findNavController().navigate(ListFragmentDirections.actionListFragmentToAddFragment())
         }
@@ -42,6 +50,7 @@ class ListFragment : Fragment(), AdapterCallback {
         binding.fabBudget.setOnClickListener {
             findNavController().navigate(ListFragmentDirections.actionListFragmentToBudgetFragment())
         }
+
 
         val adapter = SuccursaleListAdapter(requireContext())
         adapter.adapterCallback = this
@@ -52,8 +61,6 @@ class ListFragment : Fragment(), AdapterCallback {
             // Update the cached copy of the students in the adapter.
             succursales?.let { adapter.setSuccursales(it) }
         })
-
-        return binding.root
     }
 
 

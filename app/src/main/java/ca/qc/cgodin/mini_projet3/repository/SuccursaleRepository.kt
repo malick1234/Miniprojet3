@@ -12,12 +12,16 @@ class SuccursaleRepository(private val succursaleDao: SuccursaleDao) {
         succursaleDao.insert(succursale)
     }
 
-     fun getBudget(ville: String): Int{
+     fun getBudget(ville: String): Long {
         return succursaleDao.getBudget(ville)
     }
 
     suspend fun delete(succursale: Succursale){
         succursaleDao.deleteSuccursale(succursale)
+    }
+
+    suspend fun deleteAll(){
+        succursaleDao.deleteAll()
     }
 
 }

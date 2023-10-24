@@ -19,6 +19,9 @@ interface StudentDao {
     @Query("SELECT * from table_student WHERE Mat=(:Mat)")
     fun getStudent(Mat: String): LiveData<Student?>
 
+    @Query("SELECT * FROM table_student WHERE id =(:userId)")
+    fun getUserById(userId: String): LiveData<Student>
+
     @Update
     fun updateStudent(student: Student)
     @Delete

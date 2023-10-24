@@ -29,10 +29,14 @@ class SuccursaleViewModel(application: Application) : AndroidViewModel(applicati
 
     fun getBudget(ville: String) = viewModelScope.launch(Dispatchers.IO) {
         val budget = repository.getBudget(ville)
-        _budgetLiveData.postValue(budget)
+        _budgetLiveData.postValue(budget.toInt())
     }
 
     fun delete(succursale: Succursale) = viewModelScope.launch(Dispatchers.IO){
         repository.delete(succursale)
+    }
+
+    fun deleteAll() = viewModelScope.launch(Dispatchers.IO){
+        repository.deleteAll()
     }
 }
